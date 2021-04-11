@@ -57531,20 +57531,6 @@ function makeApi(runtimeState, opts) {
   const emittedWarnings = /* @__PURE__ */ new Set();
   if (runtimeState.enableTopLevelFallback === true)
     fallbackLocators.push(topLevelLocator);
-  if (opts.compatibilityMode !== false) {
-    for (const name of [`react-scripts`, `gatsby`]) {
-      const packageStore = runtimeState.packageRegistry.get(name);
-      if (packageStore) {
-        for (const reference of packageStore.keys()) {
-          if (reference === null) {
-            throw new Error(`Assertion failed: This reference shouldn't be null`);
-          } else {
-            fallbackLocators.push({ name, reference });
-          }
-        }
-      }
-    }
-  }
   const {
     ignorePattern,
     packageRegistry,
